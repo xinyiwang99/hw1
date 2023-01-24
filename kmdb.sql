@@ -111,28 +111,28 @@ DROP TABLE IF EXISTS movies_casts;
 -- TODO!
 
 CREATE TABLE movies (
-    id INT PRIMARY KEY AUTOINCREMENT，
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_title TEXT,
     year_releaseed TEXT,
     MPAA_rating TEXT,
-    studio_id INT
+    studio_id INTEGER
 );
 
 CREATE TABLE studios (
-    id INT PRIMARY KEY AUTOINCREMENT，
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     studio_name TEXT
 );
 
 CREATE TABLE casts (
-    id INT PRIMARY KEY AUTOINCREMENT，
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     actor_name TEXT,
     character_name TEXT
 
 );
 
 CREATE TABLE movies_casts (
-    movie_id INT,
-    cast_id INT
+    movie_id INTEGER,
+    cast_id INTEGER
 );
 
 
@@ -140,13 +140,48 @@ CREATE TABLE movies_casts (
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
 
--- Prints a header for the movies output
+INSERT INTO movies 
+VALUES 
+    (1,"Batman Begins","2005","PG-13",1),
+    (2,"The Dark Knight","2008","PG-13",1),
+    (3,"The Dark Knight Rises","2012","PG-13",1);
+
+INSERT INTO studios
+VALUES 
+    (1,"Warner Bros.");
+
+INSERT INTO casts
+VALUES
+    (1,"Christian Bale","Bruce Wayne"),
+    (2,"Michael Caine","Alfred"),
+    (3,"Liam Neeson","Ra's Al Ghul"),
+    (4,"Katie Holmes","Rachel Dawes"),
+    (5,"Gary Oldman","Commissioner Gordon"),
+    (6,"Heath Ledger","Joker"),
+    (7,"Aaron Eckhart","Harvey Dent"),
+    (8,"Maggie Gyllenhaal","Rachel Dawes"),
+    (9,"Tom Hardy","Bane"),
+    (10,"Joseph Gordon-Levitt","John Blake"),
+    (11,"Anne Hathaway","Selina Kyle");
+
+INSERT INTO movies_casts
+VALUES
+    (1,1),(1,2),(1,3),(1,4),(1,5),
+    (2,1),(2,6),(2,7),(2,2),(2,8),
+    (3,1),(3,5),(3,9),(3,10),(3,11);
+
 .print "Movies"
 .print "======"
 .print ""
 
 -- The SQL statement for the movies output
 -- TODO!
+SELECT movie_title,year_releaseed,MPAA_rating, studio_name
+FROM movies m
+JOIN studios s
+ON s.id = m.studio_id
+ORDER BY m.id;
+
 
 -- Prints a header for the cast output
 .print ""
@@ -157,3 +192,10 @@ CREATE TABLE movies_casts (
 
 -- The SQL statement for the cast output
 -- TODO!
+SELECT movie_title, actor_name,character_name
+FROM movies m
+JOIN movies_casts mc 
+ON m.id =mc.movie_id
+JOIN casts c
+ON mc.cast_id = c.id
+ORDER BY m.id;
