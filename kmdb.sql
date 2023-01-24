@@ -142,8 +142,8 @@ CREATE TABLE movies_casts (
 
 INSERT INTO movies 
 VALUES 
-    (1,"Batman Begins","2005","PG-13",1),
-    (2,"The Dark Knight","2008","PG-13",1),
+    (1,"Batman Begins        ","2005","PG-13",1),
+    (2,"The Dark Knight       ","2008","PG-13",1),
     (3,"The Dark Knight Rises","2012","PG-13",1);
 
 INSERT INTO studios
@@ -152,7 +152,7 @@ VALUES
 
 INSERT INTO casts
 VALUES
-    (1,"Christian Bale","Bruce Wayne"),
+    (1,"Christian Bale     ","Bruce Wayne        "),
     (2,"Michael Caine","Alfred"),
     (3,"Liam Neeson","Ra's Al Ghul"),
     (4,"Katie Holmes","Rachel Dawes"),
